@@ -16,7 +16,11 @@ class AzkarCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(Icons.remove),
+                Icon(
+                  Icons.remove,
+                  size: 38,
+                  color: Colors.red,
+                ),
                 Spacer(),
                 Text(
                   'سبحان الله',
@@ -31,11 +35,20 @@ class AzkarCard extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 100),
               child: Row(
                 children: [
-                  Text('33'),
+                  Text(
+                    '33',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white70,
+                    ),
+                  ),
                   Spacer(),
                   Text(
                     'عدد التسبيحات',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white70,
+                    ),
                   ),
                 ],
               ),

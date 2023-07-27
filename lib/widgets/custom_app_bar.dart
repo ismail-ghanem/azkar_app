@@ -12,7 +12,7 @@ class CustomAppBar extends StatelessWidget {
         Spacer(),
         Text(
           'الأذكار',
-          style: TextStyle(fontSize: 28),
+          style: TextStyle(fontSize: 36),
         ),
       ],
     );

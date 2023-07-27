@@ -12,7 +12,7 @@ class AzkarApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(brightness: Brightness.dark),
+      theme: ThemeData(fontFamily: 'Cairo', brightness: Brightness.dark),
       home: const AzkarView(),
     );
   }
