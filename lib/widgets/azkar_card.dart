@@ -42,7 +42,7 @@ class AzkarCard extends StatelessWidget {
                     '33',
                     style: TextStyle(
                       fontSize: 18,
-                      color: Colors.white70,
+                      color: Colors.green,
                     ),
                   ),
                   Spacer(),
@@ -50,7 +50,7 @@ class AzkarCard extends StatelessWidget {
                     'عدد التسبيحات',
                     style: TextStyle(
                       fontSize: 18,
-                      color: Colors.white70,
+                      color: Colors.white,
                     ),
                   ),
                 ],
