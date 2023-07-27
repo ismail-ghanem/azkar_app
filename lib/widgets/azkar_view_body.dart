@@ -1,6 +1,6 @@
-import 'package:azkar_app/widgets/azkar_card.dart';
 import 'package:flutter/material.dart';
 import '../widgets/custom_app_bar.dart';
+import '../widgets/azkar_list_view.dart';
 
 class AzkarViewBody extends StatelessWidget {
   const AzkarViewBody({super.key});
@@ -13,7 +13,7 @@ class AzkarViewBody extends StatelessWidget {
         children: [
           SizedBox(height: 50),
           CustomAppBar(),
-          AzkarCard(),
+          Expanded(child: AzkarListView()),
         ],
       ),
     );

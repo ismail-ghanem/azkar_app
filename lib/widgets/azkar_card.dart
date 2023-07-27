@@ -6,7 +6,7 @@ class AzkarCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 18, bottom: 8),
+      //margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: Colors.white.withOpacity(0.1)),
@@ -21,10 +21,13 @@ class AzkarCard extends StatelessWidget {
                   size: 38,
                   color: Colors.red,
                 ),
-                Spacer(),
-                Text(
-                  'سبحان الله',
-                  style: TextStyle(fontSize: 24),
+                //Spacer(),
+                Expanded(
+                  child: Text(
+                    'سبحان الله',
+                    style: TextStyle(fontSize: 24),
+                    textAlign: TextAlign.right,
+                  ),
                 ),
               ],
             ),
