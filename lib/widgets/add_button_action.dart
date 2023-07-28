@@ -1,3 +1,4 @@
+import '../widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class AddButtonAction extends StatelessWidget {
@@ -12,35 +13,18 @@ class AddButtonAction extends StatelessWidget {
           SizedBox(
             height: 38,
           ),
-          CustomTextField(),
+          CustomTextField(
+            hint: 'أكتب الذكر هنا',
+            maxlines: 5,
+          ),
+          SizedBox(
+            height: 12,
+          ),
+          CustomTextField(
+            hint: 'العدد',
+          ),
         ],
       ),
     );
-  }
-}
-
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      textDirection: TextDirection.rtl,
-      cursorColor: Colors.green,
-      decoration: InputDecoration(
-        hintTextDirection: TextDirection.rtl,
-        hintText: 'أكتب الذكر هنا',
-        hintStyle: const TextStyle(color: Colors.white70, fontSize: 16),
-        border: buildBorder(),
-        enabledBorder: buildBorder(),
-        focusedBorder: buildBorder(Colors.green),
-      ),
-    );
-  }
-
-  OutlineInputBorder buildBorder([color]) {
-    return OutlineInputBorder(
-        borderRadius: BorderRadius.circular(16),
-        borderSide: BorderSide(color: color ?? Colors.white));
   }
 }
