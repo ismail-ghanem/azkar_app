@@ -1,3 +1,4 @@
+import '../widgets/remove_button_action.dart';
 import 'package:flutter/material.dart';
 
 class AzkarCard extends StatelessWidget {
@@ -10,19 +11,28 @@ class AzkarCard extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: Colors.white.withOpacity(0.1)),
-      child: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Column(
           children: [
             Row(
               children: [
-                Icon(
-                  Icons.remove,
-                  size: 38,
-                  color: Colors.red,
-                ),
+                IconButton(
+                    iconSize: 22,
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return const RemoveButtonAction();
+                          });
+                    },
+                    icon: const Icon(
+                      Icons.remove_circle,
+                      color: Colors.red,
+                    )),
+
                 //Spacer(),
-                Expanded(
+                const Expanded(
                   child: Text(
                     'سبحان الله',
                     style: TextStyle(fontSize: 24),
@@ -31,10 +41,10 @@ class AzkarCard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.symmetric(horizontal: 100),
               child: Row(
                 children: [
