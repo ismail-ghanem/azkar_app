@@ -1,3 +1,4 @@
+import 'package:azkar_app/widgets/add_button_action.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/azkar_view_body.dart';
@@ -9,7 +10,15 @@ class AzkarView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32)),
+              context: context,
+              builder: (context) {
+                return const AddButtonAction();
+              });
+        },
         backgroundColor: Colors.green,
         child: const Icon(
           Icons.add,

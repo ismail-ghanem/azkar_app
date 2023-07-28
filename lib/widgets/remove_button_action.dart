@@ -6,6 +6,7 @@ class RemoveButtonAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       title: const Text(
         'هل أنت متأكد من حذف الذكر؟',
         textAlign: TextAlign.right,
