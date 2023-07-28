@@ -1,3 +1,4 @@
+import '../widgets/custom_button.dart';
 import '../widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
@@ -8,22 +9,27 @@ class AddButtonAction extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 38,
-          ),
-          CustomTextField(
-            hint: 'أكتب الذكر هنا',
-            maxlines: 5,
-          ),
-          SizedBox(
-            height: 12,
-          ),
-          CustomTextField(
-            hint: 'العدد',
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 38,
+            ),
+            CustomTextField(
+              hint: 'أكتب الذكر هنا',
+              maxlines: 5,
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            CustomTextField(
+              hint: 'العدد',
+            ),
+            SizedBox(height: 100),
+            CustomButton(),
+            SizedBox(height: 16),
+          ],
+        ),
       ),
     );
   }
