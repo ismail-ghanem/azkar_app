@@ -7,8 +7,16 @@ class AzkarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: AzkarViewBody(),
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.green,
+        child: const Icon(
+          Icons.add,
+          size: 36,
+        ),
+      ),
+      body: const AzkarViewBody(),
     );
   }
 }
