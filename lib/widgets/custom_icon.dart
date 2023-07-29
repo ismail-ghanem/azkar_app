@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomIcon extends StatelessWidget {
-  const CustomIcon({super.key});
-
+  const CustomIcon({super.key, required this.appBarIcon});
+  final IconData appBarIcon;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,8 +15,8 @@ class CustomIcon extends StatelessWidget {
       child: Center(
         child: IconButton(
             onPressed: () {},
-            icon: const Icon(
-              Icons.menu,
+            icon: Icon(
+              appBarIcon,
               size: 24,
             )),
       ),

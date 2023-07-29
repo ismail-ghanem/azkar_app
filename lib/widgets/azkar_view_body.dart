@@ -12,7 +12,10 @@ class AzkarViewBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 50),
-          CustomAppBar(),
+          CustomAppBar(
+            customAppBarTitle: 'الأذكار',
+            customAppBarIcon: Icons.menu,
+          ),
           Expanded(child: AzkarListView()),
         ],
       ),

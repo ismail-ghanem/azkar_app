@@ -11,7 +11,10 @@ class AzkarEditViewBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 50),
-          CustomAppBar(),
+          CustomAppBar(
+            customAppBarTitle: 'تعديل الذكر',
+            customAppBarIcon: Icons.check,
+          ),
         ],
       ),
     );
