@@ -1,6 +1,5 @@
-import 'package:azkar_app/widgets/add_button_action.dart';
+import '../widgets/add_button_action.dart';
 import 'package:flutter/material.dart';
-
 import '../widgets/azkar_view_body.dart';
 
 class AzkarView extends StatelessWidget {
