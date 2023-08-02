@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, required this.hint, this.maxlines = 1});
+  const CustomTextField(
+      {super.key,
+      required this.hint,
+      this.maxlines = 1,
+      this.onSaved,
+      this.myAutovalidateMode});
   final String hint;
   final int maxlines;
+  final void Function(String?)? onSaved;
+  final String? Function(String?)? myAutovalidateMode;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      onSaved: onSaved,
+      validator: myAutovalidateMode,
       textDirection: TextDirection.rtl,
       cursorColor: Colors.green,
       maxLines: maxlines,

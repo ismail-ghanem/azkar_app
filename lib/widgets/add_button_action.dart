@@ -10,26 +10,75 @@ class AddButtonAction extends StatelessWidget {
     return const Padding(
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 38,
-            ),
-            CustomTextField(
-              hint: 'أكتب الذكر هنا',
-              maxlines: 5,
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            CustomTextField(
-              hint: 'العدد',
-            ),
-            SizedBox(height: 100),
-            CustomButton(),
-            SizedBox(height: 16),
-          ],
-        ),
+        child: AddNewForm(),
+      ),
+    );
+  }
+}
+
+class AddNewForm extends StatefulWidget {
+  const AddNewForm({
+    super.key,
+  });
+
+  @override
+  State<AddNewForm> createState() => _AddNewFormState();
+}
+
+class _AddNewFormState extends State<AddNewForm> {
+  final GlobalKey<FormState> formkey = GlobalKey();
+  AutovalidateMode myAutovalidateMode = AutovalidateMode.disabled;
+  String? zekrText, zekrNum;
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: formkey,
+      autovalidateMode: myAutovalidateMode,
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 38,
+          ),
+          CustomTextField(
+            hint: 'أكتب الذكر هنا',
+            maxlines: 5,
+            onSaved: (value) {
+              zekrText = value;
+            },
+            myAutovalidateMode: (value) {
+              if (value?.isEmpty ?? true) {
+                return 'field is required';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(
+            height: 12,
+          ),
+          CustomTextField(
+            hint: 'العدد',
+            onSaved: (value) {
+              zekrNum = value;
+            },
+            myAutovalidateMode: (value) {
+              if (value?.isEmpty ?? true) {
+                return 'field is required';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 100),
+          CustomButton(
+            onTap: () {
+              if (formkey.currentState!.validate()) {
+                formkey.currentState!.save();
+              } else {
+                myAutovalidateMode = AutovalidateMode.always;
+              }
+            },
+          ),
+          const SizedBox(height: 16),
+        ],
       ),
     );
   }
