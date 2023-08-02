@@ -42,12 +42,13 @@ class _AddNewFormState extends State<AddNewForm> {
           CustomTextField(
             hint: 'أكتب الذكر هنا',
             maxlines: 5,
+            keyboardType: TextInputType.text,
             onSaved: (value) {
               zekrText = value;
             },
             myAutovalidateMode: (value) {
               if (value?.isEmpty ?? true) {
-                return 'field is required';
+                return 'برجاء ادخال النص';
               }
               return null;
             },
@@ -57,12 +58,13 @@ class _AddNewFormState extends State<AddNewForm> {
           ),
           CustomTextField(
             hint: 'العدد',
+            keyboardType: TextInputType.number,
             onSaved: (value) {
               zekrNum = value;
             },
             myAutovalidateMode: (value) {
               if (value?.isEmpty ?? true) {
-                return 'field is required';
+                return 'برجاء ادخال العدد';
               }
               return null;
             },

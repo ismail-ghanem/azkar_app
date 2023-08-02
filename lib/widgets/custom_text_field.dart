@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField(
@@ -6,14 +7,17 @@ class CustomTextField extends StatelessWidget {
       required this.hint,
       this.maxlines = 1,
       this.onSaved,
-      this.myAutovalidateMode});
+      this.myAutovalidateMode,
+      this.keyboardType});
   final String hint;
   final int maxlines;
   final void Function(String?)? onSaved;
   final String? Function(String?)? myAutovalidateMode;
+  final TextInputType? keyboardType;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: keyboardType,
       onSaved: onSaved,
       validator: myAutovalidateMode,
       textDirection: TextDirection.rtl,
