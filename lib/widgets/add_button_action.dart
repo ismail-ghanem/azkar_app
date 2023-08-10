@@ -16,7 +16,7 @@ class AddButtonAction extends StatelessWidget {
         child: BlocConsumer<AddZekrCubit, AddZekrState>(
           listener: (context, state) {
             if (state is AddZekrFailure) {
-              print('failed ${state.errMessage}');
+              debugPrint('failed ${state.errMessage}');
             }
             if (state is AddZekrSuccess) {
               Navigator.pop(context);
