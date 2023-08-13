@@ -7,7 +7,7 @@ class AzkarModel extends HiveObject {
   @HiveField(0)
   final String zekr;
   @HiveField(1)
-  final int numOfZekr;
+  final String numOfZekr;
 
   AzkarModel({
     required this.zekr,

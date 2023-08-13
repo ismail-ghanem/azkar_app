@@ -18,7 +18,7 @@ class AzkarModelAdapter extends TypeAdapter<AzkarModel> {
     };
     return AzkarModel(
       zekr: fields[0] as String,
-      numOfZekr: fields[1] as int,
+      numOfZekr: fields[1] as String,
     );
   }
 

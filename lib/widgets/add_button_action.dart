@@ -1,3 +1,4 @@
+import 'package:azkar_app/models/azkar_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
@@ -12,22 +13,23 @@ class AddButtonAction extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: SingleChildScrollView(
-        child: BlocConsumer<AddZekrCubit, AddZekrState>(
-          listener: (context, state) {
-            if (state is AddZekrFailure) {
-              debugPrint('failed ${state.errMessage}');
-            }
-            if (state is AddZekrSuccess) {
-              Navigator.pop(context);
-            }
-          },
-          builder: (context, state) {
-            return ModalProgressHUD(
-                inAsyncCall: state is AddZekrLoading ? true : false,
-                child: const AddNewForm());
-          },
-        ),
+      child: BlocConsumer<AddZekrCubit, AddZekrState>(
+        listener: (context, state) {
+          if (state is AddZekrFailure) {
+            debugPrint('failed ${state.errMessage}');
+          }
+          if (state is AddZekrSuccess) {
+            Navigator.pop(context);
+          }
+        },
+        builder: (context, state) {
+          return ModalProgressHUD(
+            inAsyncCall: state is AddZekrLoading ? true : false,
+            child: const SingleChildScrollView(
+              child: AddNewForm(),
+            ),
+          );
+        },
       ),
     );
   }
@@ -45,7 +47,9 @@ class AddNewForm extends StatefulWidget {
 class _AddNewFormState extends State<AddNewForm> {
   final GlobalKey<FormState> formkey = GlobalKey();
   AutovalidateMode myAutovalidateMode = AutovalidateMode.disabled;
-  String? zekrText, zekrNum;
+  String? zekrText;
+  String? zekrNum;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -77,7 +81,7 @@ class _AddNewFormState extends State<AddNewForm> {
             hint: 'العدد',
             keyboardType: TextInputType.number,
             onSaved: (value) {
-              zekrNum = value;
+              zekrNum = value.toString();
             },
             myAutovalidateMode: (value) {
               if (value?.isEmpty ?? true) {
@@ -91,6 +95,11 @@ class _AddNewFormState extends State<AddNewForm> {
             onTap: () {
               if (formkey.currentState!.validate()) {
                 formkey.currentState!.save();
+                var zekrModel = AzkarModel(
+                  zekr: zekrText!,
+                  numOfZekr: zekrNum!,
+                );
+                BlocProvider.of<AddZekrCubit>(context).addZekr(zekrModel);
               } else {
                 myAutovalidateMode = AutovalidateMode.always;
               }

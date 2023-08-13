@@ -13,10 +13,10 @@ class AddZekrCubit extends Cubit<AddZekrState> {
     emit(AddZekrLoading());
     try {
       var azkarBox = Hive.box<AzkarModel>(kAzkarBox);
-      emit(AddZekrSuccess());
       await azkarBox.add(zekr);
+      emit(AddZekrSuccess());
     } catch (e) {
-      AddZekrFailure(e.toString());
+      emit(AddZekrFailure(e.toString()));
     }
   }
 }

@@ -9,9 +9,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   await Hive.initFlutter();
-  Bloc.observer = SimpleBlocObserver();
-  await Hive.openBox(kAzkarBox);
   Hive.registerAdapter(AzkarModelAdapter());
+  Bloc.observer = SimpleBlocObserver();
+  if (!Hive.isAdapterRegistered(0)) {
+    Hive.registerAdapter(AzkarModelAdapter());
+  }
+  //Hive.registerAdapter(AzkarModelAdapter());
+  await Hive.openBox<AzkarModel>(kAzkarBox);
   runApp(const AzkarApp());
 }
 

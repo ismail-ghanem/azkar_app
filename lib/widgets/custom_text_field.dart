@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField(
@@ -11,7 +10,7 @@ class CustomTextField extends StatelessWidget {
       this.keyboardType});
   final String hint;
   final int maxlines;
-  final void Function(String?)? onSaved;
+  final Function(dynamic)? onSaved;
   final String? Function(String?)? myAutovalidateMode;
   final TextInputType? keyboardType;
   @override
