@@ -1,7 +1,5 @@
 import 'package:azkar_app/models/azkar_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
 import '../cubits/add_zekr_cubit/add_zekr_cubit.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_field.dart';
@@ -13,26 +11,26 @@ class AddButtonAction extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AddZekrCubit(),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: BlocConsumer<AddZekrCubit, AddZekrState>(
-          listener: (context, state) {
-            if (state is AddZekrFailure) {
-              debugPrint('failed ${state.errMessage}');
-            }
-            if (state is AddZekrSuccess) {
-              Navigator.pop(context);
-            }
-          },
-          builder: (context, state) {
-            return ModalProgressHUD(
-              inAsyncCall: state is AddZekrLoading ? true : false,
-              child: const SingleChildScrollView(
+      child: BlocConsumer<AddZekrCubit, AddZekrState>(
+        listener: (context, state) {
+          if (state is AddZekrFailure) {
+            debugPrint('failed ${state.errMessage}');
+          }
+          if (state is AddZekrSuccess) {
+            Navigator.pop(context);
+          }
+        },
+        builder: (context, state) {
+          return AbsorbPointer(
+            absorbing: state is AddZekrLoading ? true : false,
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: SingleChildScrollView(
                 child: AddNewForm(),
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
@@ -94,18 +92,23 @@ class _AddNewFormState extends State<AddNewForm> {
             },
           ),
           const SizedBox(height: 100),
-          CustomButton(
-            onTap: () {
-              if (formkey.currentState!.validate()) {
-                formkey.currentState!.save();
-                var zekrModel = AzkarModel(
-                  zekr: zekrText!,
-                  numOfZekr: zekrNum!,
-                );
-                BlocProvider.of<AddZekrCubit>(context).addZekr(zekrModel);
-              } else {
-                myAutovalidateMode = AutovalidateMode.always;
-              }
+          BlocBuilder<AddZekrCubit, AddZekrState>(
+            builder: (context, state) {
+              return CustomButton(
+                isLoading: state is AddZekrLoading ? true : false,
+                onTap: () {
+                  if (formkey.currentState!.validate()) {
+                    formkey.currentState!.save();
+                    var zekrModel = AzkarModel(
+                      zekr: zekrText!,
+                      numOfZekr: zekrNum!,
+                    );
+                    BlocProvider.of<AddZekrCubit>(context).addZekr(zekrModel);
+                  } else {
+                    myAutovalidateMode = AutovalidateMode.always;
+                  }
+                },
+              );
             },
           ),
           const SizedBox(height: 16),
