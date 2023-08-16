@@ -11,25 +11,28 @@ class AddButtonAction extends StatelessWidget {
   const AddButtonAction({super.key});
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: BlocConsumer<AddZekrCubit, AddZekrState>(
-        listener: (context, state) {
-          if (state is AddZekrFailure) {
-            debugPrint('failed ${state.errMessage}');
-          }
-          if (state is AddZekrSuccess) {
-            Navigator.pop(context);
-          }
-        },
-        builder: (context, state) {
-          return ModalProgressHUD(
-            inAsyncCall: state is AddZekrLoading ? true : false,
-            child: const SingleChildScrollView(
-              child: AddNewForm(),
-            ),
-          );
-        },
+    return BlocProvider(
+      create: (context) => AddZekrCubit(),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: BlocConsumer<AddZekrCubit, AddZekrState>(
+          listener: (context, state) {
+            if (state is AddZekrFailure) {
+              debugPrint('failed ${state.errMessage}');
+            }
+            if (state is AddZekrSuccess) {
+              Navigator.pop(context);
+            }
+          },
+          builder: (context, state) {
+            return ModalProgressHUD(
+              inAsyncCall: state is AddZekrLoading ? true : false,
+              child: const SingleChildScrollView(
+                child: AddNewForm(),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

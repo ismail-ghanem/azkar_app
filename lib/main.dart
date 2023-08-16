@@ -1,5 +1,4 @@
 import 'package:azkar_app/const.dart';
-import 'package:azkar_app/cubits/add_zekr_cubit/add_zekr_cubit.dart';
 import 'package:azkar_app/models/azkar_model.dart';
 import 'package:azkar_app/simple_bloc_observer.dart';
 import 'package:azkar_app/views/azkar_view.dart';
@@ -9,8 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   await Hive.initFlutter();
-  Hive.registerAdapter(AzkarModelAdapter());
   Bloc.observer = SimpleBlocObserver();
+  Hive.registerAdapter(AzkarModelAdapter());
   if (!Hive.isAdapterRegistered(0)) {
     Hive.registerAdapter(AzkarModelAdapter());
   }
@@ -24,17 +23,10 @@ class AzkarApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => AddZekrCubit(),
-        ),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(fontFamily: 'Cairo', brightness: Brightness.dark),
-        home: const AzkarView(),
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(fontFamily: 'Cairo', brightness: Brightness.dark),
+      home: const AzkarView(),
     );
   }
 }
