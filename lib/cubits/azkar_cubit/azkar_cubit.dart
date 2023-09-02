@@ -8,15 +8,10 @@ part 'azkar_state.dart';
 
 class AzkarCubit extends Cubit<AzkarState> {
   AzkarCubit() : super(AzkarInitial());
+  List<AzkarModel>? azkar;
   fetchAzkar() async {
-    try {
-      var azkarBox = Hive.box<AzkarModel>(kAzkarBox);
+    var azkarBox = Hive.box<AzkarModel>(kAzkarBox);
 
-      emit(AzkarSuccess(
-        azkarBox.values.toList(),
-      ));
-    } catch (e) {
-      emit(AzkarFailure(e.toString()));
-    }
+    azkar = azkarBox.values.toList();
   }
 }
